@@ -20,7 +20,7 @@ const Navbar = () => {
       >
         <Link to="/">
           <Text
-            fontSize={{ base: "22px", sm: "28px" }}
+            fontSize={35}
             fontWeight="bold"
             textTransform="uppercase"
             textAlign="center"
@@ -35,11 +35,11 @@ const Navbar = () => {
 
         <HStack spacing={2} alignItems={"center"}>
           <Link to="/create">
-            <Button>
+            <Button aria-label="Create product">
               <FaRegSquarePlus size={22} />
             </Button>
           </Link>
-          <Button onClick={toggleColorMode}>
+          <Button onClick={toggleColorMode} aria-label="Toggle color mode">
             {colorMode === "light" ? <IoMoon /> : <LuSun />}
           </Button>
         </HStack>
