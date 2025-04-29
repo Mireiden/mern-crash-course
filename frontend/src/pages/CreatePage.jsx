@@ -27,16 +27,15 @@ const CreatePage = () => {
         title: "Error",
         description: message,
         status: "error",
-        isClosable: true,
       });
     } else {
       toaster.create({
         title: "Success",
         description: message,
         status: "success",
-        closable: true,
       });
     }
+    setNewProduct({ name: "", price: "", image: "" });
   };
 
   return (
