@@ -11,11 +11,11 @@ const HomePage = () => {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
-  console.log(products);
+  // console.log(products);
 
   return (
     <Container maxW={"container.xl"} py={12}>
-      <VStack spacing={8}>
+      <VStack gap={8}>
         <Text
           fontSize={30}
           fontWeight={"bold"}
