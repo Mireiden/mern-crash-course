@@ -8,10 +8,35 @@ import {
 } from "@chakra-ui/react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { useColorModeValue } from "./ui/color-mode";
+import { useProductStore } from "@/store/product";
+import { Toaster, toaster } from "@/components/ui/toaster";
 
 const ProductCard = ({ product }) => {
   const textColor = useColorModeValue("gray.600", "gray.200");
   const bgColor = useColorModeValue("white", "gray.800");
+
+  const { deleteProduct } = useProductStore();
+
+  const handleDeleteProduct = async (pid) => {
+    const { success, message } = await deleteProduct(pid);
+    if (!success) {
+      toaster.create({
+        title: "Error",
+        description: message,
+        status: "error",
+        duration: 3000,
+        closable: true,
+      });
+    } else {
+      toaster.create({
+        title: "Success",
+        description: message,
+        status: "success",
+        duration: 3000,
+        closable: true,
+      });
+    }
+  };
 
   return (
     <Box
@@ -42,7 +67,11 @@ const ProductCard = ({ product }) => {
           <IconButton colorPalette={"blue"} aria-label="Edit product">
             <MdEdit />
           </IconButton>
-          <IconButton colorPalette={"red"} aria-label="Delete product">
+          <IconButton
+            colorPalette={"red"}
+            onClick={() => handleDeleteProduct(product._id)}
+            aria-label="Delete product"
+          >
             <MdDelete />
           </IconButton>
         </HStack>
