@@ -3,12 +3,16 @@ import {
   Button,
   CloseButton,
   Dialog,
+  DialogFooter,
+  DialogRootProvider,
   Heading,
   HStack,
   IconButton,
   Image,
+  Input,
   Portal,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { useColorModeValue } from "./ui/color-mode";
@@ -20,8 +24,11 @@ const ProductCard = ({ product }) => {
   const textColor = useColorModeValue("gray.600", "gray.200");
   const bgColor = useColorModeValue("white", "gray.800");
 
-  const { deleteProduct } = useProductStore();
+  const { deleteProduct, updateProduct } = useProductStore();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
+
+  const [updatedProduct, setUpdatedProduct] = useState(product);
 
   const handleDeleteProduct = async (pid) => {
     const { success, message } = await deleteProduct(pid);
@@ -42,6 +49,11 @@ const ProductCard = ({ product }) => {
         closable: true,
       });
     }
+  };
+
+  const handleUpdateProduct = async (pid, updatedProduct) => {
+    updateProduct(pid, updatedProduct);
+    setUpdateDialogOpen(false);
   };
 
   return (
@@ -73,7 +85,7 @@ const ProductCard = ({ product }) => {
           <IconButton
             colorPalette={"blue"}
             aria-label="Edit product"
-            onClick={() => setEditDialogOpen(true)}
+            onClick={() => setUpdateDialogOpen(true)}
           >
             <MdEdit />
           </IconButton>
@@ -120,6 +132,80 @@ const ProductCard = ({ product }) => {
                     onClick={() => handleDeleteProduct(product._id)}
                   >
                     Delete
+                  </Button>
+                </Dialog.Footer>
+              </Dialog.Content>
+            </Dialog.Positioner>
+          </Dialog.Backdrop>
+        </Portal>
+      </Dialog.Root>
+
+      <Dialog.Root
+        lazyMount
+        open={updateDialogOpen}
+        onOpenChange={(e) => setUpdateDialogOpen(e.open)}
+      >
+        <Portal>
+          <Dialog.Backdrop>
+            <Dialog.Positioner>
+              <Dialog.Content>
+                <Dialog.Header>
+                  <Dialog.Title>Update product</Dialog.Title>
+                  <Dialog.CloseTrigger asChild>
+                    <CloseButton size="sm" />
+                  </Dialog.CloseTrigger>
+                </Dialog.Header>
+
+                <Dialog.Body>
+                  <VStack gap={4}>
+                    <Input
+                      placeholder="Product name"
+                      name="name"
+                      value={updatedProduct.name}
+                      onChange={(e) =>
+                        setUpdatedProduct({
+                          ...updatedProduct,
+                          name: e.target.value,
+                        })
+                      }
+                    />
+                    <Input
+                      placeholder="Price"
+                      name="price"
+                      type="number"
+                      value={updatedProduct.price}
+                      onChange={(e) =>
+                        setUpdatedProduct({
+                          ...updatedProduct,
+                          price: e.target.value,
+                        })
+                      }
+                    />
+                    <Input
+                      placeholder="Image URL"
+                      name="image"
+                      value={updatedProduct.image}
+                      onChange={(e) =>
+                        setUpdatedProduct({
+                          ...updatedProduct,
+                          image: e.target.value,
+                        })
+                      }
+                    />
+                  </VStack>
+                </Dialog.Body>
+
+                <Dialog.Footer>
+                  <Dialog.ActionTrigger asChild>
+                    <Button variant={"outline"}>Cancel</Button>
+                  </Dialog.ActionTrigger>
+                  <Button
+                    colorPalette={"blue"}
+                    onClick={() =>
+                      handleUpdateProduct(product._id, updatedProduct)
+                    }
+                  >
+                    Update
                   </Button>
                 </Dialog.Footer>
               </Dialog.Content>
