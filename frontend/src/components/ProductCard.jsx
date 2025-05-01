@@ -52,8 +52,23 @@ const ProductCard = ({ product }) => {
   };
 
   const handleUpdateProduct = async (pid, updatedProduct) => {
-    updateProduct(pid, updatedProduct);
-    setUpdateDialogOpen(false);
+    const { success, message } = await updateProduct(pid, updatedProduct);
+    if (!success) {
+      toaster.create({
+        title: "Error",
+        description: message,
+        status: "error",
+        duration: 3000,
+      });
+    } else {
+      toaster.create({
+        title: "Success",
+        description: message,
+        status: "success",
+        duration: 3000,
+      });
+      setUpdateDialogOpen(false);
+    }
   };
 
   return (
