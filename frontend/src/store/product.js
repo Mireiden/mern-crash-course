@@ -45,11 +45,11 @@ export const useProductStore = create((set) => ({
 
     const data = await res.json();
     if (!data.success) return { success: false, message: data.message };
-
     set((state) => ({
       products: state.products.map((product) =>
         product._id === pid ? data.data : product
       ),
     }));
+    return { success: true, message: data.message };
   },
 }));
