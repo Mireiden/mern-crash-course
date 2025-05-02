@@ -27,5 +27,3 @@ app.listen(PORT, () => {
   connectDB();
   console.log("server started at http://localhost:" + PORT);
 });
-//remove later
-console.log("Current environment:", process.env.NODE_ENV);
