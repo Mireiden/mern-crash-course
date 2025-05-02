@@ -1,6 +1,6 @@
 # MERN Crash Course App - Product store
 
-This is a simple MERN (MongoDB, Express, React, Node.js) stack application I built by following [Burak Orkmez's MERN crash course on freeCodeCamp](https://github.com/burakorkmez/mern-crash-course).
+This is a simple MERN (MongoDB, Express, React, Node.js) stack application I built by following [Burak Orkmez's MERN crash course on freeCodeCamp](https://www.youtube.com/watch?v=Dukz-3mS3Us).
 
 ## Features
 
@@ -35,4 +35,4 @@ npm run start
 
 ## Credits
 
-This project is based on [Burak Orkmez's crash course ](https://github.com/burakorkmez/mern-crash-course) on the freeCodeCamp YouTube channel.
+This project is based on [Burak Orkmez's crash course ](https://www.youtube.com/watch?v=Dukz-3mS3Us) on the freeCodeCamp YouTube channel.
