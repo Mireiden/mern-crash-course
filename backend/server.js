@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 const __dirname = path.resolve();
 
-app.use(express.json()); // dozvoljava da prihvatimo JSON podatke u req.body
+app.use(express.json()); // express.json() is a middleware function that parses incoming JSON requests and puts the parsed data in req.body
 app.use("/api/products", productRoutes);
 
 if (process.env.NODE_ENV === "production") {
