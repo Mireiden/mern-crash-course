@@ -20,7 +20,7 @@ const Navbar = () => {
       >
         <Link to="/">
           <Text
-            fontSize={35}
+            fontSize={{ base: 28, sm: 35 }}
             fontWeight="bold"
             textTransform="uppercase"
             textAlign="center"
@@ -33,7 +33,7 @@ const Navbar = () => {
           </Text>
         </Link>
 
-        <HStack spacing={2} alignItems={"center"}>
+        <HStack gap={2} alignItems={"center"}>
           <Link to="/create">
             <Button aria-label="Create product">
               <FaRegSquarePlus size={22} />
