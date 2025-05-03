@@ -20,7 +20,7 @@ const Navbar = () => {
       >
         <Link to="/">
           <Text
-            fontSize={{ base: 28, sm: 35 }}
+            fontSize={{ base: 25, sm: 35 }}
             fontWeight="bold"
             textTransform="uppercase"
             textAlign="center"
