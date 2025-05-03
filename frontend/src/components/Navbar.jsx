@@ -1,4 +1,11 @@
-import { Container, Flex, HStack, Text, Button } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  HStack,
+  Text,
+  Button,
+  Center,
+} from "@chakra-ui/react";
 import React from "react";
 import { FaRegSquarePlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -20,7 +27,7 @@ const Navbar = () => {
       >
         <Link to="/">
           <Text
-            fontSize={{ base: 25, sm: 35 }}
+            fontSize={{ base: 28, sm: 35 }}
             fontWeight="bold"
             textTransform="uppercase"
             textAlign="center"
@@ -33,7 +40,7 @@ const Navbar = () => {
           </Text>
         </Link>
 
-        <HStack gap={2} alignItems={"center"}>
+        <HStack align={{ base: Center }} gap={2} alignItems={"center"}>
           <Link to="/create">
             <Button aria-label="Create product">
               <FaRegSquarePlus size={22} />
